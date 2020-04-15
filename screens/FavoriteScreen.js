@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Linking } from 'react-native';
-import { Card, Button, Text, List, ListItem, Icon } from 'react-native-elements';
+import { Card, Button, Text, ListItem, Icon } from 'react-native-elements';
 
 import * as actions from '../actions';
 import _ from 'lodash';
@@ -89,9 +89,9 @@ export default class FavoriteScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <List containerStyle={styles.listContainer}>
+        <View containerStyle={styles.listContainer}>
           {this.renderFavoriteAlbums()}
-        </List>
+        </View>
       </ScrollView>
     );
   }

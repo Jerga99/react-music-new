@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Linking, Alert, FlatList } from 'react-native';
-import { Avatar, Text, Icon, Divider, List, ListItem } from 'react-native-elements';
+import { Avatar, Text, Icon, Divider, ListItem } from 'react-native-elements';
 
 import * as actions from '../actions';
 
@@ -18,7 +18,7 @@ export default class AlbumDetailScreen extends React.Component {
   }
 
   componentDidMount() {
-    const album = this.props.navigation.getParam('album', {});
+    const { album = {} } = this.props.route.params
 
     actions.getAlbumTracks(album.id).then(
       tracks => this.setState({tracks}))
@@ -83,8 +83,8 @@ export default class AlbumDetailScreen extends React.Component {
   }
 
   render() {
-    const album = this.props.navigation.getParam('album', {});
-    const artist = this.props.navigation.getParam('artist', '');
+    const {album = {}} = this.props.route.params;
+    const {artist = ''} = this.props.route.params;
 
     if (album.id) {
       return (
@@ -105,9 +105,9 @@ export default class AlbumDetailScreen extends React.Component {
             </View>
           </View>
           <Divider style={{backgroundColor: 'black'}}/>
-          <List containerStyle={{paddingTop: 0, marginTop: 0}}>
+          <View style={{paddingTop: 0, marginTop: 0}}>
           { this.renderTracks(album) }
-          </List>
+          </View>
         </ScrollView>
       );
     } else {
